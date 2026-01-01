@@ -225,10 +225,12 @@ int main()
     ///
     /// Query the handle for the first VkPhysicalDevice
     ///
+    std::cout << "Number of physical devices: " << numPhysicalDevs << "\n";
     VkPhysicalDevice physicalDev = {};
     res = vkEnumeratePhysicalDevices(instance, &numPhysicalDevs, &physicalDev);
-    if (res != VK_SUCCESS) {
+    if (!(res == VK_SUCCESS || res == VK_INCOMPLETE)) {
         std::cerr << "Failed to query the first physical device\n";
+        std::cerr << "Error: " << res << "\n";
         return -1;
     }
 

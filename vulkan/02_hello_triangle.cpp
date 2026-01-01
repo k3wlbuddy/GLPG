@@ -58,9 +58,9 @@ int main()
     counter_f red(dist(gen));
     counter_f green(dist(gen));
     counter_f blue(dist(gen));
-    const char *compiledVSPath = "C:/repos/GLPG/build/vulkan/02_triangle_vs";
+    const char *compiledVSPath = "../shaders/02_triangle_vs.cso";
     const char *vsCompiledBlob;
-    const char *compiledFSPath = "C:/repos/GLPG/build/vulkan/02_triangle_fs";
+    const char *compiledFSPath = "../shaders/02_triangle_ps.cso";
     const char *fsCompiledBlob;
     ///
     /// TODO: Query modes dynamically.
@@ -259,7 +259,8 @@ int main()
     ///
     uint32_t numPhysicalDevs = 0U;
     res = vkEnumeratePhysicalDevices(instance, &numPhysicalDevs, nullptr);
-    if (res != VK_SUCCESS || numPhysicalDevs <= 0U) {
+    if ((res != VK_SUCCESS || res!= VK_INCOMPLETE) ||
+         numPhysicalDevs <= 0U) {
         std::cerr << "Failed to query physical devices\n";
     } else {
         // We default to using the first enumerated VkPhysicalDevice.
@@ -357,7 +358,10 @@ int main()
     ///
     VkPhysicalDeviceMemoryProperties physcalDevMemoryProps = {};
     vkGetPhysicalDeviceMemoryProperties(physicalDev, &physcalDevMemoryProps);
+#if 0
+    //TODO
     VkPrintVkPhysicalDeviceMemoryProperties(physcalDevMemoryProps);
+#endif
 
     ///
     /// Create Shader modules
@@ -685,7 +689,10 @@ int main()
     ///
     VkMemoryRequirements vtxInputBufferReqs = {};
     vkGetBufferMemoryRequirements(dev, vtxBuffer, &vtxInputBufferReqs);
+#if 0
+    // TODO
     PrintVkMemoryRequirements(vtxInputBufferReqs);
+#endif
 
     
     VkMemoryAllocateInfo vtxInputBufferMemInfo = {};
