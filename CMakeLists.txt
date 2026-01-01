@@ -1,5 +1,5 @@
 # NOTE: Use 32bit builds when using D3D2 - D3D8
-# cmake -T v142,host=x64 -G "Visual Studio 16 2019" -A Win32 ../
+# cmake -A Win32 ../
 
 cmake_minimum_required(VERSION 3.10)
 
