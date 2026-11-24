@@ -11,6 +11,8 @@ set(HLSL_VS_PROFILE "vs_6_4")
 set(HLSL_PS_PROFILE "ps_6_4")
 set(DXC_COMPILER "${VK_SDK_PATH}/Bin/dxc.exe")
 
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/shaders/")
+
 foreach(shader ${VULKAN_SHADER_FILES})
     get_filename_component(name ${shader} NAME_WE)
     string(FIND "${name}" "_vs" VERTEX_SHADER)
